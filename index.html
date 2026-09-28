@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alifian — The Playable Resume 🎮</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     CUSTOM CURSOR
+     ============================================================ -->
+<div id="cursor">
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Cartoon hand/glove cursor -->
+    <g id="cursor-hand">
+      <!-- Cuff -->
+      <ellipse cx="20" cy="35" rx="12" ry="6" fill="#FF6B35" stroke="#1A1A2E" stroke-width="2"/>
+      <!-- Palm -->
+      <rect x="10" y="18" width="20" height="18" rx="6" fill="#FEFEFE" stroke="#1A1A2E" stroke-width="2"/>
+      <!-- Index finger -->
+      <rect x="17" y="6" width="7" height="16" rx="3.5" fill="#FEFEFE" stroke="#1A1A2E" stroke-width="2"/>
+      <!-- Thumb -->
+      <rect x="8" y="15" width="6" height="10" rx="3" fill="#FEFEFE" stroke="#1A1A2E" stroke-width="2"/>
+      <!-- Knuckle lines -->
+      <line x1="14" y1="22" x2="26" y2="22" stroke="#DDD" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+  </svg>
+</div>
+
+<!-- ============================================================
+     WIPE TRANSITION OVERLAY
+     ============================================================ -->
+<div id="wipe-overlay"></div>
+
+<!-- ============================================================
+     SUCCESS OVERLAY
+     ============================================================ -->
+<div id="success-overlay">
+  <div class="success-box">
+    <span class="success-emoji">🎉</span>
+    <div class="success-title">Mission Accomplished!</div>
+    <div class="success-sub">Your message has been sent successfully! Alifian will reply shortly.</div>
+    <button class="btn-close-success" onclick="closeSuccess()">Continue Mission →</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     MUTE TOAST
+     ============================================================ -->
+<div id="mute-toast">🔇 Sound OFF</div>
+
+<!-- ============================================================
+     HUD NAVIGATION
+     ============================================================ -->
+<header id="hud">
+  <div class="hud-logo">aL.EXE</div>
+  <nav>
+    <a href="#home" class="active">🏕️ Base</a>
+    <a href="#about">👾 About</a>
+    <a href="#projects">🏆 Trophy</a>
+    <a href="#skills">⚡ Skills</a>
+    <a href="#contact">📡 Contact</a>
+  </nav>
+  <div class="hp-bar-wrap">
+    <span>HP</span>
+    <div class="hp-bar"><div class="hp-fill"></div></div>
+  </div>
+  <button id="mute-btn" title="Toggle Sound" onclick="toggleMute()">🔊</button>
+</header>
+
+<!-- ============================================================
+     SECTION 1: HERO — THE BASECAMP
+     ============================================================ -->
+<section id="home">
+  <!-- Stars -->
+  <div class="stars-bg" id="stars-bg"></div>
+
+  <!-- Ground -->
+  <div class="ground"></div>
+
+  <!-- Floating decorations -->
+  <div class="floating-item" style="top:15%;left:5%;--d:3.5s;--s:35px">⭐</div>
+  <div class="floating-item" style="top:25%;left:88%;--d:4.2s;--s:28px">💎</div>
+  <div class="floating-item" style="top:60%;left:2%;--d:5s;--s:32px">🪙</div>
+  <div class="floating-item" style="top:10%;left:70%;--d:3.8s;--s:25px">✨</div>
+  <div class="floating-item" style="top:70%;left:92%;--d:4.5s;--s:30px">💥</div>
+
+  <!-- Cloud decorations -->
+  <div class="cloud" style="top:12%;animation-duration:25s;animation-delay:0s;">
+    <svg width="120" height="60" viewBox="0 0 120 60"><ellipse cx="60" cy="40" rx="55" ry="22" fill="white" opacity="0.15"/><ellipse cx="40" cy="32" rx="30" ry="20" fill="white" opacity="0.15"/><ellipse cx="80" cy="28" rx="25" ry="18" fill="white" opacity="0.15"/></svg>
+  </div>
+  <div class="cloud" style="top:22%;animation-duration:35s;animation-delay:-10s;">
+    <svg width="90" height="50" viewBox="0 0 90 50"><ellipse cx="45" cy="32" rx="40" ry="18" fill="white" opacity="0.1"/><ellipse cx="30" cy="25" rx="22" ry="16" fill="white" opacity="0.1"/></svg>
+  </div>
+
+  <div class="hero-content">
+    <!-- Text Left -->
+    <div class="hero-text">
+      <div class="level-badge">
+        <span>▶</span> LEVEL 1 — THE BASECAMP
+      </div>
+      <h1 class="hero-title">
+        Hai, i`m<br><span>Alifiannsu!</span>
+      </h1>
+      <div class="hero-subtitle">
+        <span id="typing-text">Full-Stack Developer</span>
+        <span class="typing-cursor"></span>
+      </div>
+      <p class="hero-desc">
+        A developer who loves turning crazy ideas into real products. I believe good code is code that humans can understand — not just machines.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-play" id="play-btn">
+          <span class="play-icon">▶</span> Let's Start
+        </a>
+        <a href="#contact" class="btn-secondary">📡 Hire Me</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Years Exp</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-num">99%</div>
+          <div class="stat-label">Caffeine</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-4">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Semangat</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Character Right -->
+    <div class="hero-character">
+      <div class="char-scene">
+        <!-- Speech bubble -->
+        <div class="speech-bubble">Let's build something! 🚀</div>
+
+        <!-- SVG Character — Cartoon Alifian -->
+        <svg class="char-body" viewBox="0 0 220 320" fill="none" xmlns="http://www.w3.org/2000/svg" width="220" height="320">
+          <!-- Shadow -->
+          <ellipse cx="110" cy="310" rx="50" ry="10" fill="rgba(0,0,0,0.3)"/>
+
+          <!-- Shoes -->
+          <rect x="62" y="270" width="38" height="22" rx="8" fill="#1A1A2E" stroke="#1A1A2E" stroke-width="2"/>
+          <rect x="120" y="270" width="38" height="22" rx="8" fill="#1A1A2E" stroke="#1A1A2E" stroke-width="2"/>
+          <rect x="60" y="278" width="42" height="14" rx="7" fill="#333"/>
+          <rect x="118" y="278" width="42" height="14" rx="7" fill="#333"/>
+
+          <!-- Legs -->
+          <rect x="74" y="220" width="28" height="60" rx="8" fill="#3B82F6" stroke="#1A1A2E" stroke-width="2.5"/>
+          <rect x="118" y="220" width="28" height="60" rx="8" fill="#3B82F6" stroke="#1A1A2E" stroke-width="2.5"/>
+
+          <!-- Body / Hoodie -->
+          <rect x="54" y="140" width="112" height="95" rx="20" fill="#6EE7B7" stroke="#1A1A2E" stroke-width="3"/>
+          <!-- Hoodie pocket -->
+          <rect x="82" y="190" width="56" height="36" rx="10" fill="rgba(0,0,0,0.1)" stroke="#1A1A2E" stroke-width="2"/>
+          <!-- Hoodie kangaroo pocket line -->
+          <line x1="110" y1="190" x2="110" y2="226" stroke="#1A1A2E" stroke-width="2"/>
+
+          <!-- Left arm -->
+          <rect x="20" y="148" width="38" height="24" rx="10" fill="#6EE7B7" stroke="#1A1A2E" stroke-width="2.5" transform="rotate(-10 20 148)"/>
+          <!-- Left hand -->
+          <circle cx="18" cy="183" r="16" fill="#FFDBA4" stroke="#1A1A2E" stroke-width="2.5"/>
+
+          <!-- Right arm -->
+          <rect x="162" y="148" width="38" height="24" rx="10" fill="#6EE7B7" stroke="#1A1A2E" stroke-width="2.5" transform="rotate(10 200 148)"/>
+          <!-- Right hand -->
+          <circle cx="202" cy="183" r="16" fill="#FFDBA4" stroke="#1A1A2E" stroke-width="2.5"/>
+          <!-- Laptop in right hand -->
+          <rect x="184" y="175" width="36" height="26" rx="4" fill="#1A1A2E"/>
+          <rect x="186" y="177" width="32" height="20" rx="3" fill="#22D3EE"/>
+          <rect x="182" y="199" width="40" height="4" rx="2" fill="#333"/>
+          <!-- Code lines on laptop screen -->
+          <rect x="189" y="180" width="18" height="2" rx="1" fill="#FFD93D" opacity="0.8"/>
+          <rect x="189" y="184" width="12" height="2" rx="1" fill="#6EE7B7" opacity="0.8"/>
+          <rect x="189" y="188" width="20" height="2" rx="1" fill="#A855F7" opacity="0.8"/>
+
+          <!-- Neck -->
+          <rect x="95" y="120" width="30" height="28" rx="8" fill="#FFDBA4" stroke="#1A1A2E" stroke-width="2"/>
+
+          <!-- Head -->
+          <ellipse cx="110" cy="96" rx="58" ry="62" fill="#FFDBA4" stroke="#1A1A2E" stroke-width="3"/>
+
+          <!-- Hair -->
+          <path d="M52 80 Q55 30 110 28 Q165 30 168 80 Q155 50 110 48 Q65 50 52 80Z" fill="#1A1A2E"/>
+          <!-- Hair tuft -->
+          <path d="M95 28 Q110 10 125 28" fill="none" stroke="#1A1A2E" stroke-width="4" stroke-linecap="round"/>
+
+          <!-- Eyebrows -->
+          <path d="M80 74 Q90 68 100 72" fill="none" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round"/>
+          <path d="M120 72 Q130 68 140 74" fill="none" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round"/>
+
+          <!-- Eyes group (animated) -->
+          <g class="char-eyes">
+            <!-- Left eye -->
+            <ellipse cx="90" cy="88" rx="13" ry="14" fill="white" stroke="#1A1A2E" stroke-width="2"/>
+            <circle cx="93" cy="90" r="7" fill="#1A1A2E"/>
+            <circle cx="96" cy="87" r="3" fill="white"/>
+            <!-- Right eye -->
+            <ellipse cx="130" cy="88" rx="13" ry="14" fill="white" stroke="#1A1A2E" stroke-width="2"/>
+            <circle cx="133" cy="90" r="7" fill="#1A1A2E"/>
+            <circle cx="136" cy="87" r="3" fill="white"/>
+          </g>
+
+          <!-- Cheeks -->
+          <ellipse cx="72" cy="104" rx="12" ry="8" fill="#FFB3BA" opacity="0.6"/>
+          <ellipse cx="148" cy="104" rx="12" ry="8" fill="#FFB3BA" opacity="0.6"/>
+
+          <!-- Smile -->
+          <path d="M92 118 Q110 132 128 118" fill="none" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round"/>
+
+          <!-- Nose -->
+          <ellipse cx="110" cy="106" rx="6" ry="4" fill="rgba(0,0,0,0.1)"/>
+
+          <!-- Headphones -->
+          <path d="M52 85 Q52 35 110 35 Q168 35 168 85" fill="none" stroke="#1A1A2E" stroke-width="5" stroke-linecap="round"/>
+          <rect x="42" y="78" width="20" height="26" rx="8" fill="#FFD93D" stroke="#1A1A2E" stroke-width="2.5"/>
+          <rect x="158" y="78" width="20" height="26" rx="8" fill="#FFD93D" stroke="#1A1A2E" stroke-width="2.5"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee strip -->
+<div class="marquee-strip">
+  <div class="marquee-track" id="marquee-track"></div>
+</div>
+
+<!-- ============================================================
+     SECTION 2: ABOUT
+     ============================================================ -->
+<section id="about">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="reveal">
+      <div class="section-tag">👾 LEVEL 2 — THE ARCHIVE</div>
+      <h2 class="section-title">Who Is Alifian?</h2>
+    </div>
+
+    <div class="about-grid">
+      <!-- Left: Bio -->
+      <div class="reveal reveal-delay-1">
+        <p class="bio-text" style="margin-bottom:20px;">
+          Haii! I`m <strong>Alifian</strong>, a <strong>Student</strong> who is passionate about creating digital experiences that are not only functional, but also fun to use.
+        </p>
+        <p class="bio-text" style="margin-bottom:20px;">
+          My journey starts from <strong>curiosity</strong> — Why is this button clickable? How does the website know my name? And since then, I haven't stopped learning.
+        </p>
+        <p class="bio-text" style="margin-bottom:30px;">
+          When not coding, I can be found playing games, <strong>designing UI</strong> unnecessary ones, or drinking coffee while watching tech documentaries.
+        </p>
+
+        <!-- XP Bars -->
+        <div class="xp-bar-wrap reveal reveal-delay-2">
+          <div style="font-weight:800;font-size:15px;color:var(--dark);margin-bottom:16px;">📊 Stats Character</div>
+          <div class="xp-label"><span>🎯 Problem Solving</span><span style="color:var(--blue)">95%</span></div>
+          <div class="xp-bar" style="margin-bottom:12px;"><div class="xp-fill" style="width:0%" data-width="95%" data-color="linear-gradient(90deg,#3B82F6,#06B6D4)"></div></div>
+
+          <div class="xp-label"><span>🎨 UI/UX Design</span><span style="color:var(--pink)">80%</span></div>
+          <div class="xp-bar" style="margin-bottom:12px;"><div class="xp-fill" style="width:0%;background:linear-gradient(90deg,#FF6B9D,#A855F7)" data-width="80%" data-color="linear-gradient(90deg,#FF6B9D,#A855F7)"></div></div>
+
+          <div class="xp-label"><span>☕ Coffee Tolerance</span><span style="color:var(--orange)">100%</span></div>
+          <div class="xp-bar"><div class="xp-fill" style="width:0%;background:linear-gradient(90deg,#FF6B35,#FFD93D)" data-width="100%" data-color="linear-gradient(90deg,#FF6B35,#FFD93D)"></div></div>
+        </div>
+      </div>
+
+      <!-- Right: Info cards -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div class="about-card reveal reveal-delay-2">
+          <div class="card-label">📋 Quick Info</div>
+          <ul class="about-list" style="margin-top:14px;">
+            <li>
+              <div class="icon-box" style="background:#FFD93D;">🎂</div>
+              <div><div style="font-size:12px;color:#888;">Date of Birth</div>01 Mei 2004</div>
+            </li>
+            <li>
+              <div class="icon-box" style="background:#6EE7B7;">📍</div>
+              <div><div style="font-size:12px;color:#888;">Location</div>Indonesia 🇮🇩</div>
+            </li>
+            <li>
+              <div class="icon-box" style="background:#93C5FD;">🎓</div>
+              <div><div style="font-size:12px;color:#888;">Education</div>Sistem Informasi</div>
+            </li>
+            <li>
+              <div class="icon-box" style="background:#FCA5A5;">💼</div>
+              <div><div style="font-size:12px;color:#888;">Status</div>Available for Work ✅</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="about-card reveal reveal-delay-3">
+          <div class="card-label">🎮 Current Quest</div>
+          <ul class="about-list" style="margin-top:14px;">
+            <li>
+              <div class="icon-box" style="background:#A855F7;">🔭</div>
+              <div>Learning Cloud Architecture</div>
+            </li>
+            <li>
+              <div class="icon-box" style="background:#22C55E;">🏗️</div>
+              <div>Create SaaS pribadi</div>
+            </li>
+            <li>
+              <div class="icon-box" style="background:#F59E0B;">📖</div>
+              <div>Write tech blog</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3: PROJECTS — THE TROPHY ROOM
+     ============================================================ -->
+<section id="projects">
+  <div style="max-width:1160px;margin:0 auto;">
+
+    <!-- Header -->
+    <div class="reveal" style="text-align:center;">
+      <div class="section-tag" style="color:var(--dark);">🏆 LEVEL 3 — THE TROPHY ROOM</div>
+      <h2 class="section-title" style="color:var(--white);">Best Project</h2>
+      <p style="color:#889;font-weight:700;max-width:540px;margin:0 auto 0;">Choose your dungeon category! Each area has its own defeated boss. 🗡️</p>
+    </div>
+
+    <!-- ===== CATEGORY SELECTOR (GAME CONSOLE UI) ===== -->
+    <div class="cat-selector reveal reveal-delay-1">
+
+      <!-- "ALL" tab -->
+      <button class="cat-btn active" data-cat="all" onclick="filterProjects('all', this)">
+        <span class="cat-btn-icon">🎮</span>
+        <span class="cat-btn-label">all</span>
+        <span class="cat-btn-count" id="count-all">9</span>
+      </button>
+
+      <!-- Game Dev tab -->
+      <button class="cat-btn" data-cat="gamedev" onclick="filterProjects('gamedev', this)">
+        <span class="cat-btn-icon">👾</span>
+        <span class="cat-btn-label">Game Dev</span>
+        <span class="cat-btn-count" id="count-gamedev">3</span>
+        <span class="cat-btn-bar" style="--cat-color:#FFD93D;"></span>
+      </button>
+
+      <!-- Full Stack tab -->
+      <button class="cat-btn" data-cat="fullstack" onclick="filterProjects('fullstack', this)">
+        <span class="cat-btn-icon">🌐</span>
+        <span class="cat-btn-label">Full Stack</span>
+        <span class="cat-btn-count" id="count-fullstack">1</span>
+        <span class="cat-btn-bar" style="--cat-color:#06B6D4;"></span>
+      </button>
+
+      <!-- Cyber Security tab -->
+      <button class="cat-btn" data-cat="cyber" onclick="filterProjects('cyber', this)">
+        <span class="cat-btn-icon">🔐</span>
+        <span class="cat-btn-label">Cyber Security</span>
+        <span class="cat-btn-count" id="count-cyber">3</span>
+        <span class="cat-btn-bar" style="--cat-color:#FF4757;"></span>
+      </button>
+
+    </div>
+
+    <!-- ===== ACTIVE CATEGORY BANNER ===== -->
+    <div class="cat-banner" id="cat-banner">
+      <div class="cat-banner-inner" id="cat-banner-inner">
+        <span id="cat-banner-icon">🎮</span>
+        <div>
+          <div id="cat-banner-title" style="font-family:'Fredoka One',cursive;font-size:22px;">All Project</div>
+          <div id="cat-banner-desc" style="font-size:13px;opacity:0.7;font-weight:700;">Showing all categories — 9 projects</div>
+        </div>
+        <div class="cat-banner-dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PROJECTS GRID ===== -->
+    <div class="projects-grid" id="projects-grid">
+
+      <!-- ─── GAME DEV ─── -->
+      <div class="arcade-card reveal reveal-delay-1" data-category="gamedev">
+        <div class="cat-stripe gamedev-stripe"></div>
+        <div class="new-badge">HOT!</div>
+        <div class="arcade-screen">
+          <div class="screen-placeholder screen-gamedev">🏰</div>
+        </div>
+        <div class="arcade-body">
+          <div class="cat-chip gamedev-chip">👾 Game Dev</div>
+          <div class="stars-rating">
+            <span class="star-icon">⭐</span><span class="star-icon">⭐</span><span class="star-icon">⭐</span>
+          </div>
+          <div class="project-name">DungeonCraft RPG</div>
+          <div class="project-desc">Game RPG berbasis browser dengan sistem inventory, battle turn-based, quest log, dan multiplayer co-op lokal.</div>
+          <div class="project-tags">
+            <span class="tag tag-gamedev">Unity</span><span class="tag tag-gamedev">C#</span><span class="tag tag-gamedev">WebGL</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn-project demo demo-gamedev">▶ Play Now</a>
+            <!-- <a href="#" class="btn-project code">⌨ Code</a> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="arcade-card reveal reveal-delay-2" data-category="gamedev">
+        <div class="cat-stripe gamedev-stripe"></div>
+        <div class="arcade-screen">
+          <div class="screen-placeholder screen-gamedev">🚀</div>
+        </div>
+        <div class="arcade-body">
+          <div class="cat-chip gamedev-chip">👾 Game Dev</div>
+          <div class="stars-rating">
+            <span class="star-icon">⭐</span><span class="star-icon">⭐</span><span class="star-icon empty">⭐</span>
+          </div>
+          <div class="project-name">AstroBlast Shooter</div>
+          <div class="project-desc">Game shoot-em-up 2D dengan sistem upgrade pesawat, boss fight epik, dan leaderboard online realtime.</div>
+          <div class="project-tags">
+            <span class="tag tag-gamedev">JavaScript</span><span class="tag tag-gamedev">Canvas API</span><span class="tag tag-gamedev">Socket.io</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn-project demo demo-gamedev">▶ Play Now</a>
+            <a href="#" class="btn-project code">⌨ Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="arcade-card reveal reveal-delay-3" data-category="gamedev">
+        <div class="cat-stripe gamedev-stripe"></div>
+        <div class="arcade-screen">
+          <div class="screen-placeholder screen-gamedev">🌿</div>
+        </div>
+        <div class="arcade-body">
+          <div class="cat-chip gamedev-chip">👾 Game Dev</div>
+          <div class="stars-rating">
+            <span class="star-icon">⭐</span><span class="star-icon">⭐</span><span class="star-icon">⭐</span>
+          </div>
+          <div class="project-name">Pixel Farm Simulator</div>
+          <div class="project-desc">Farming sim pixel art dengan musim dinamis, ekonomi pasar, pernikahan NPC, dan sistem cuaca prosedural.</div>
+          <div class="project-tags">
+            <span class="tag tag-gamedev">Godot</span><span class="tag tag-gamedev">GDScript</span><span class="tag tag-gamedev">Pixel Art</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn-project demo demo-gamedev">▶ Play Now</a>
+            <a href="#" class="btn-project code">⌨ Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── FULL STACK ─── -->
+      <div class="arcade-card reveal reveal-delay-1" data-category="fullstack">
+        <div class="cat-stripe fullstack-stripe"></div>
+        <div class="new-badge" style="background:var(--cyan);">NEW!</div>
+        <div class="arcade-screen">
+          <div class="screen-placeholder screen-fullstack">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="75" height="75" style="image-rendering: pixelated; filter: drop-shadow(0px 4px 0px rgba(0,0,0,0.5));">
+        <!-- Uap Kopi -->
+        <path d="M4 1h1v1H4zm3 0h1v1H7zm4 0h1v1h-1z" fill="#cbd5e1"/>
+        <path d="M3 2h1v1H3zm3 0h1v1H6zm4 0h1v1h-1z" fill="#94a3b8"/>
+        <path d="M4 3h1v1H4zm3 0h1v1H7zm4 0h1v1h-1z" fill="#cbd5e1"/>
+        <!-- Badan Utama Cangkir -->
+        <path d="M2 5h10v1H2zm0 1h10v1H2zm0 1h10v1H2zm1 1h8v1H3zm1 1h6v1H4zm1 1h4v1H5z" fill="#854d0e"/>
+        <!-- Sisi Bayangan -->
+        <path d="M9 5h3v3H9zm-1 3h3v1H9zm-2 1h4v1H7zm-1 1h3v1H6z" fill="#a16207"/>
+        <!-- Bibir Cangkir -->
+        <path d="M2 4h10v1H2z" fill="#fef08a"/>
+        <!-- Gagang Cangkir -->
+        <path d="M12 6h2v1h-2zm1 1h1v2h-1zm-1 2h2v1h-2z" fill="#a16207"/>
+        <path d="M12 5h2v1h-2zm2 1h1v3h-1zm-2 3h2v1h-2z" fill="#fef08a"/>
+        <!-- Piring Tatakan -->
+        <path d="M1 11h12v1H1zm1 1h10v1H2z" fill="#e2e8f0"/>
+        <path d="M8 11h5v1H8zm-1 1h4v1H7z" fill="#cbd5e1"/>
+      </svg>
+          </div>
+        </div>
+        <div class="arcade-body">
+          <div class="cat-chip fullstack-chip">🌐 Full Stack</div>
+          <div class="stars-rating">
+            <span class="star-icon">⭐</span><span class="star-icon">⭐</span><span class="star-icon">⭐</span>
+          </div>
+          <div class="project-name">Sistem Kasir (Point Of Sale)</div>
+          <div class="project-desc">Sistem Point of Sales (POS) kasir coffee shop modern. Mendukung manajemen transaksi multi-metode real-time (Tunai, QRIS, Debit), otomatisasi cetak struk thermal, sinkronisasi stok bahan baku, serta dashboard analytics admin backend yang komprehensif.</div>
+          <div class="project-tags">
+            <span class="tag tag-fullstack">Laravel</span><span class="tag tag-fullstack">JavaScript</span><span class="tag tag-fullstack">MySQL</span><span class="tag tag-fullstack">CSS3</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn-project demo demo-fullstack">▶ Demo</a>
+            <a href="https://github.com/L1ppyy/Aplikasi-Kasir-Coffee-Shop-POS-" target="_blank" class="btn-project code">⌨ Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="arcade-card reveal reveal-delay-2" data-category="fullstack">
+        <div class="cat-stripe fullstack-stripe"></div>
+        <div class="arcade-screen">
+          <div class="screen-placeholder screen-fullstack">📱</div>
+        </div>
+        <div class="arcade-body">
+          <div class="cat-chip fullstack-chip">🌐 Full Stack</div>
+          <div class="stars-rating">
+            <span class="star-icon">⭐</span><span class="star-icon">⭐</span><span class="star-icon">⭐</span>
+          </div>
+          <div class="project-name">TaskFlow App</div>
+          <div class="project-desc">Mobile app manajemen tugas dengan Kanban board, notifikasi push, sync real-time, dan kolaborasi tim.</div>
+          <div class="project-tags">
+            <span class="tag tag-fullstack">Flutter</span><span class="tag tag-fullstack">Firebase</span><span class="tag tag-fullstack">Dart</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn-project demo demo-fullstack">▶ Demo</a>
+            <a href="#" class="btn-project code">⌨ Code</a>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div class="arcade-card reveal reveal-delay-3" data-category="fullstack">
+        <div class="cat-stripe fullstack-stripe"></div>
+        <div class="arcade-screen">
+          <div class="screen-placeholder screen-fullstack">🏥</div>
+        </div>
+        <div class="arcade-body">
+          <div class="cat-chip fullstack-chip">🌐 Full Stack</div>
+          <div class="stars-rating">
+            <span class="star-icon">⭐</span><span class="star-icon">⭐</span><span class="star-icon">⭐</span>
+          </div>
+          <div class="project-name">MediTrack System</div>
+          <div class="project-desc">Sistem informasi rumah sakit lengkap dengan manajemen pasien, jadwal dokter, dan rekam medis digital.</div>
+          <div class="project-tags">
+            <span class="tag tag-fullstack">Laravel</span><span class="tag tag-fullstack">Alpine.js</span><span class="tag tag-fullstack">PostgreSQL</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn-project demo demo-fullstack">▶ Demo</a>
+            <a href="#" class="btn-project code">⌨ Code</a>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- ─── CYBER SECURITY ─── -->
+      <!-- <div class="arcade-card reveal reveal-delay-1" data-category="cyber">
+        <div class="cat-stripe cyber-stripe"></div>
+        <div class="new-badge" style="background:var(--red);">🔥 HOT</div>
+        <div class="arcade-screen">
+          <div class="screen-placeholder screen-cyber">🔍</div>
+        </div>
+        <div class="arcade-body">
+          <div class="cat-chip cyber-chip">🔐 Cyber Security</div>
+          <div class="stars-rating">
+            <span class="star-icon">⭐</span><span class="star-icon">⭐</span><span class="star-icon">⭐</span>
+          </div>
+          <div class="project-name">NetScanner Pro</div>
+          <div class="project-desc">Tool network scanning & vulnerability assessment berbasis CLI dengan laporan PDF otomatis dan deteksi port terbuka.</div>
+          <div class="project-tags">
+            <span class="tag tag-cyber">Python</span><span class="tag tag-cyber">Nmap</span><span class="tag tag-cyber">Scapy</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn-project demo demo-cyber">▶ Demo</a>
+            <a href="#" class="btn-project code">⌨ Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="arcade-card reveal reveal-delay-2" data-category="cyber">
+        <div class="cat-stripe cyber-stripe"></div>
+        <div class="arcade-screen">
+          <div class="screen-placeholder screen-cyber">🛡️</div>
+        </div>
+        <div class="arcade-body">
+          <div class="cat-chip cyber-chip">🔐 Cyber Security</div>
+          <div class="stars-rating">
+            <span class="star-icon">⭐</span><span class="star-icon">⭐</span><span class="star-icon empty">⭐</span>
+          </div>
+          <div class="project-name">PassVault Secure</div>
+          <div class="project-desc">Password manager end-to-end encrypted dengan vault lokal, generator password kuat, dan audit keamanan akun.</div>
+          <div class="project-tags">
+            <span class="tag tag-cyber">AES-256</span><span class="tag tag-cyber">React</span><span class="tag tag-cyber">Electron</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn-project demo demo-cyber">▶ Demo</a>
+            <a href="#" class="btn-project code">⌨ Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="arcade-card reveal reveal-delay-3" data-category="cyber">
+        <div class="cat-stripe cyber-stripe"></div>
+        <div class="arcade-screen">
+          <div class="screen-placeholder screen-cyber">🎣</div>
+        </div>
+        <div class="arcade-body">
+          <div class="cat-chip cyber-chip">🔐 Cyber Security</div>
+          <div class="stars-rating">
+            <span class="star-icon">⭐</span><span class="star-icon">⭐</span><span class="star-icon">⭐</span>
+          </div>
+          <div class="project-name">PhishGuard Analyzer</div>
+          <div class="project-desc">Tool deteksi phishing berbasis ML yang menganalisis URL, header email, dan konten halaman secara real-time.</div>
+          <div class="project-tags">
+            <span class="tag tag-cyber">Python</span><span class="tag tag-cyber">TensorFlow</span><span class="tag tag-cyber">Flask</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn-project demo demo-cyber">▶ Demo</a>
+            <a href="#" class="btn-project code">⌨ Code</a>
+          </div>
+        </div>
+      </div>
+
+    </div>/projects-grid -->
+
+    <!-- Empty state (hidden by default) -->
+    <div id="empty-state" style="display:none;text-align:center;padding:60px 20px;">
+      <div style="font-size:60px;margin-bottom:16px;">😅</div>
+      <div style="font-family:'Fredoka One',cursive;font-size:28px;color:var(--white);margin-bottom:8px;">No Project Found!</div>
+      <div style="color:#889;font-weight:700;">Coba pilih kategori lain.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4: SKILLS — THE POWER-UPS
+     ============================================================ -->
+<section id="skills">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-tag">⚡ LEVEL 4 — POWER-UP COLLECTION</div>
+      <h2 class="section-title">Collection Power-Up</h2>
+      <p style="color:#888;font-weight:700;max-width:500px;margin:0 auto 0;">Every technology is a secret weapon. Click to activate!</p>
+    </div>
+
+    <div class="skills-grid">
+      <!-- JS -->
+      <div class="powerup-card reveal reveal-delay-1" onclick="collectPowerUp(this,'⚡')">
+        <div class="pu-badge">MAX</div>
+        <img src="icon/javas-removebg-preview.png" class="pu-icon" alt="JavaScript">       
+        <div class="pu-name">JavaScript</div>
+        <div class="pu-desc">Dynamic Brain For Interactive Web</div>
+        <div class="pu-level">
+          <div class="pu-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- React -->
+      <div class="powerup-card reveal reveal-delay-2" onclick="collectPowerUp(this,'⚛️')">
+        <img src="icon/reactjs-removebg-preview.png" class="pu-icon" alt="Reactjs">
+        <div class="pu-name">React</div>
+        <div class="pu-desc">Building Fast and Dynamic UI</div>
+        <div class="pu-level">
+          <div class="pu-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot empty"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Node JS -->
+      <div class="powerup-card reveal reveal-delay-2" onclick="collectPowerUp(this,'⚛️')">
+        <img src="icon/node-removebg-preview.png" class="pu-icon" alt="Node JS">
+        <div class="pu-name">Node JS</div>
+        <div class="pu-desc">Building Fast and Dynamic UI</div>
+        <div class="pu-level">
+          <div class="pu-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot empty"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Laravel -->
+      <div class="powerup-card reveal reveal-delay-2" onclick="collectPowerUp(this,'🔧')" style="background:var(--white);">
+        <img src="icon/laravel-removebg-preview.png" class="pu-icon" alt="Laravel">
+        <div class="pu-name">Laravel</div>
+        <div class="pu-desc">A Versatile Framework For Modern Systems</div>
+        <div class="pu-level">
+          <div class="pu-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHP -->
+      <div class="powerup-card reveal reveal-delay-1" onclick="collectPowerUp(this,'💡')">
+        <img src="icon/php-removebg-preview.png" class="pu-icon" alt="PHP">
+        <div class="pu-name">PHP</div>
+        <div class="pu-desc">Bohlam • Ide-ide Brilian</div>
+        <div class="pu-level">
+          <div class="pu-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Flutter -->
+      <div class="powerup-card reveal reveal-delay-3" onclick="collectPowerUp(this,'📱')">
+        <img src="icon/flutter-removebg-preview.png" class="pu-icon" alt="Flutter">
+        <div class="pu-name">Flutter</div>
+        <div class="pu-desc">One Code For Many Worlds</div>
+        <div class="pu-level">
+          <div class="pu-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logic -->
+      <div class="powerup-card reveal reveal-delay-1" onclick="collectPowerUp(this,'💡')">
+        <div class="pu-badge">HOT</div>
+        <span class="pu-icon">💡</span>
+        <div class="pu-name">Logic</div>
+        <div class="pu-desc">Bohlam • Ide-ide Brilian</div>
+        <div class="pu-level">
+          <div class="pu-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- MySQL -->
+      <div class="powerup-card reveal reveal-delay-3" onclick="collectPowerUp(this,'🗄️')">
+        <img src="icon/sql-removebg-preview.png" class="pu-icon" alt="MySQL">
+        <div class="pu-name">MySQL</div>
+        <div class="pu-desc">Reliable Database For Complex Systems</div>
+        <div class="pu-level">
+          <div class="pu-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Git -->
+      <div class="powerup-card reveal reveal-delay-1" onclick="collectPowerUp(this,'🌿')">
+        <img src="icon/git-Photoroom.png" class="pu-icon" alt="GIT">
+        <div class="pu-name">Git</div>
+        <div class="pu-desc">Version Control For Neat Collaboration</div>
+        <div class="pu-level">
+          <div class="pu-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Python -->
+      <div class="powerup-card reveal reveal-delay-2" onclick="collectPowerUp(this,'🐍')">
+        <img src="icon/python-removebg-preview.png" class="pu-icon" alt="Python">
+        <div class="pu-name">Python</div>
+        <div class="pu-desc">Flexible For Automation & Logic</div>
+        <div class="pu-level">
+          <div class="pu-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design -->
+      <div class="powerup-card reveal reveal-delay-3" onclick="collectPowerUp(this,'🎨')">
+        <div class="pu-badge">NEW</div>
+        <span class="pu-icon">🎨</span>
+        <div class="pu-name">UI Design</div>
+        <div class="pu-desc">Designing Intuitive Experiences</div>
+        <div class="pu-level">
+          <div class="pu-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 5: CONTACT — THE BOSS STAGE
+     ============================================================ -->
+<section id="contact">
+  <!-- Background decoration -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
+    <div style="position:absolute;width:400px;height:400px;top:-100px;right:-100px;background:radial-gradient(circle,rgba(6,182,212,0.1),transparent 70%);border-radius:50%;"></div>
+    <div style="position:absolute;width:300px;height:300px;bottom:-50px;left:-50px;background:radial-gradient(circle,rgba(168,85,247,0.1),transparent 70%);border-radius:50%;"></div>
+    <!-- Floating game elements -->
+    <div style="position:absolute;top:20%;left:5%;font-size:30px;animation:floatItem 4s ease-in-out infinite;">📡</div>
+    <div style="position:absolute;top:60%;right:5%;font-size:24px;animation:floatItem 3.5s ease-in-out infinite;">✉️</div>
+    <div style="position:absolute;top:40%;left:3%;font-size:20px;animation:floatItem 5s ease-in-out infinite 1s;">⭐</div>
+    <div style="position:absolute;top:30%;right:3%;font-size:28px;animation:floatItem 4.5s ease-in-out infinite 0.5s;">🎮</div>
+  </div>
+
+  <div class="contact-wrap">
+    <div class="reveal" style="text-align:center;margin-bottom:40px;">
+      <div class="section-tag" style="background:var(--cyan);color:var(--dark);border-color:rgba(255,255,255,0.3);">📡 LEVEL 5 — THE BOSS STAGE</div>
+      <h2 class="contact-title">Mission: Contact</h2>
+      <p style="color:#889;font-weight:700;">Send messages & complete your final mission!</p>
+    </div>
+
+    <div class="contact-form-box reveal reveal-delay-1">
+      <form action="kirim_pesan.php" method="POST" id="contact-form" onsubmit="handleSubmit(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div class="form-group">
+            <label>👤 Your Name</label>
+            <input type="text" class="form-input" placeholder="Player Name..." required>
+          </div>
+          <div class="form-group">
+            <label>📧 Email</label>
+            <input type="email" class="form-input" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>🎯 Subject</label>
+          <input type="text" class="form-input" placeholder="Your mission topic..." required>
+        </div>
+        <div class="form-group">
+          <label>💬 Message</label>
+          <textarea class="form-input" rows="5" placeholder="Write your message here... Tell us about your project, your question, or just want to say hi! 👋" required></textarea>
+        </div>
+        <button type="submit" class="btn-send">
+          <span>🚀</span> Send Mission!
+        </button>
+      </form>
+
+      <div class="social-links" style="margin-top:30px;padding-top:24px;border-top:2px solid rgba(255,255,255,0.05);">
+        <a href="https://www.linkedin.com/in/alifian-surawijaya-2a71b7408/" target="_blank" class="social-btn">💼 LinkedIn</a>
+        <a href="https://github.com/L1ppyy" class="social-btn" target="_blank">🐙 GitHub</a>
+        <a href="#" class="social-btn">🐦 Twitter</a>
+        <a href="https://www.instagram.com/alifiannsu" class="social-btn" target="_blank">📸 Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <p>Made with <span>❤️ + ☕ + 🎮</span> by <span>Alifian</span> • 2024</p>
+  <p style="margin-top:8px;font-size:11px;">The Playable Resume™ — Level Complete! 🎉</p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
